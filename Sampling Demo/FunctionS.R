@@ -1,10 +1,9 @@
-#################### Functions ####################
 library(plyr)
 library(gridExtra)
 
 #Takes a 1D vector of data and a sample size
 systematic_sample <- function(data,smp.sz,sys.chg=3){             #Takes a 1D vector of data and a sample size                                                           
-  out <- rep(NA,smp.sz)                                 #initilize output vector
+  out <- rep(NA,smp.sz)                                           #initilize output vector
   start <- sample(length(data),1)                                 #find 1st obs  
   list <- seq(from=start, to=sys.chg*(smp.sz-1)+start,by=sys.chg)   #initilize output vector
   
@@ -24,7 +23,7 @@ mround<-function(x,base,floor=0){
   else{ base*ceiling(max(x)/base)  }
 }
 
-gen_plot <- function(data=dat[,3],name="Population",iylim=c(0,.10)){
+gen_plot <- function(data=dat[,3], name="Population", iylim=c(0,.10)){
   h<-hist(data, freq=fflag, ylim=iylim, breaks=seq(0,xmax,1), main=name, xlab="Age in Years");
   text(8,.1/10*9,paste("mean = ",mean(data)))
   text(8,.1/10*8,paste(" std = ",round(sd(data),2)))
@@ -53,7 +52,7 @@ gen_gg <- function(data,name,pop=data){
 graphs <- function(in_name="temp",tofile=FALSE){
 ##########################      ||  MEAN          ##############################################
 tquit <- 'a'
-if(tofile){pdf(paste(file="~/Documents/ITP/Ankenmann - Sampling/Plots/",in_name,".pdf",sep=""), paper="letter")}
+if(tofile){pdf(paste(file="./Sampling Demo/Plots/",in_name,".pdf",sep=""), paper="letter")}
 par(mfrow=c(3,1))
 
 #Samples without Replacement

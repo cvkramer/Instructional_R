@@ -1,10 +1,10 @@
 #Bring in Functions
-source('~/Documents/ITP/Ankenmann - Sampling/FunctionS.R')
+source('./Sampling Demo/FunctionS.R')
 
 ################################## Inits ##################################
-dat <- read.csv("/home/cvkramer/Documents/ITP/Ankenmann - Sampling/FoR.csv")
-
+dat <- read.csv("./Sampling Demo/FoR.csv")
 data <- rep(dat$Age,10000)
+
 #Sampling Information
 seed <- 14                #Randomizer Seed Value
 ss <- 20                  #Sample Size
@@ -21,10 +21,17 @@ fflag <- 0                #0-Percentage 1-Frequencies
 x<-rnorm(1000000, mean(data), sd(data)/sqrt(ss))
 d.x <- density(x)
 
-if(col==2){ xmax <- 3 ; brk=.5 ; prob.den <- FALSE }else{  xmax <- 70 ; brk=.25 ; prob.den <- TRUE}
+if(col==2){ 
+   xmax <- 3 ; brk=.5 ; prob.den <- FALSE
+}else{ 
+   xmax <- 70 ; brk=.25 ; prob.den <- TRUE
+}
 
 ############# Initilize Containers #############
 #Generate empty matrices
+
+vals <- structure(rnorm(n), names = paste("a", 1:n, sep = ""))
+
 data_1  <- matrix(,nrow=ss,ncol=reps[1])
 data_1r <- matrix(,nrow=ss,ncol=reps[1])
 data_1s <- matrix(,nrow=ss,ncol=reps[1])
